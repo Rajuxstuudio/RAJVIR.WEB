@@ -22,7 +22,7 @@ export const templatesDB: TemplateDB[] = [
     tools: ["figma", "illustrator"],
   },
   {
-    name: "Brand Kit Preview",
+    name: "Qilix",
     image: "",
     colors: ["#DDD6FE", "#C4B5FD"],
     tools: ["illustrator", "photoshop"],
