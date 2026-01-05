@@ -19,7 +19,7 @@ export interface ProjectDB {
 
 export interface TemplateDB {
   name: string;
-  image: any;
+  image: string[];
   colors: string[];
   tools: string[];
 }

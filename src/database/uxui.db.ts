@@ -1,4 +1,4 @@
-import { ProjectDB } from "./Type";
+import { ProjectDB } from "./type";
 
 // mockups
 import mobileMockup1 from "@/assets/mockup-mobile-1.png";

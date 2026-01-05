@@ -1,4 +1,4 @@
-import { ProjectDB } from "./Type";
+import { ProjectDB } from "./type";
 
 // mockups
 import rajvirMobileMockup from "@/database/DevelopmentAssets/rajvirMobileMockup.jpeg";
