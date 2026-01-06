@@ -5,7 +5,6 @@ import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   // 👇 This must match your GitHub Pages repo subpath
-  base: '/active/',
 
   build: {
     outDir: 'dist', // default is fine, but make sure you're deploying this folder
@@ -20,6 +19,8 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger()
   ].filter(Boolean),
+
+    base: '/active/',
 
   resolve: {
     alias: {
