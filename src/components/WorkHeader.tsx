@@ -59,7 +59,7 @@ const WorkHeader = ({
               onClick={() => onTabChange(tab.id)}
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
                 activeTab === tab.id
-                  ? "bg-card text-foreground shadow-md scale-105"
+                  ? "bg-card text-foreground shadow-md scale-105 dark:bg-muted/50"
                   : "text-muted-foreground hover:text-foreground hover:bg-card/50"
               }`}
             >
