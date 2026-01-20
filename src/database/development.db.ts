@@ -13,6 +13,7 @@ export const developmentDB: ProjectDB[] = [
     colors: ["#6026BB", "#DA4DF0", "#110F18", "#ffffff"],
     font: "DM Sans/ Sora",
     isLive: true,
+    websiteUrl: "https://rajvir.vercel.app/",
     description:
       "Portalio Website crafted from scratch, featuring immersive 3D design and fluid animated elements. It combines striking visuals with intuitive usability, ensuring a modern, engaging, and user‑friendly experience throughout.",
     stack: ["Figma", "React", "TypeScript", "Tailwind CSS"],
@@ -20,6 +21,8 @@ export const developmentDB: ProjectDB[] = [
     mobileMockup: rajvirMobileMockup,
     webMockup: rajvirWebMockup,
     category: "development",
+    businessDomain: "Personal Portfolio",
+    appModel: "Web Application",
   },
   // {
   //   id: "cloudgavel",

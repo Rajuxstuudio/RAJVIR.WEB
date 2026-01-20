@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import TimelineCard from "@/components/TimelineCard";
 import { motion } from "framer-motion";
+import SkillsSection from "@/components/SkillsSection";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -148,6 +149,8 @@ const Journey = () => {
           </div>
         </div>
       </main>
+              {/* <SkillsSection /> */}
+
 
       <Footer />
     </div>

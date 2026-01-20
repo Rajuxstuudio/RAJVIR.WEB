@@ -397,3 +397,16 @@
 a, button, [role="button"], input, textarea, select {
   cursor: none !important;
 }
+
+  /* Stat cards */
+  .stat-card {
+    @apply flex flex-col items-center text-center;
+  }
+
+  .stat-value {
+    @apply text-2xl lg:text-3xl font-bold text-foreground;
+  }
+
+  .stat-label {
+    @apply text-xs text-muted-foreground uppercase tracking-wider mt-1;
+  }

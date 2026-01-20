@@ -108,8 +108,8 @@ const ServiceRequestForm = ({ defaultService }: ServiceRequestFormProps) => {
   };
 
   return (
-<section className="container p-0"> 
-  <div className="p-4 grid grid-cols-2 lg:grid-cols-2 gap-12 items-start">
+    <section className="container mx-auto">
+      <div className="p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
         {/* ================= LEFT COLUMN (DESKTOP ONLY) ================= */}
         <motion.div
@@ -126,7 +126,24 @@ const ServiceRequestForm = ({ defaultService }: ServiceRequestFormProps) => {
               All project details shared through this form are reviewed personally.
             </p>
           </div>
+          {/* Contact Info */}
+          <div className="space-y-3 mb-8">
+            <a
+              href="tel:+918005883696"
+              className="flex items-center gap-3 text-sm hover:text-primary"
+            >
+              <Phone className="w-4 h-4" />
+              +91 80058 83696
+            </a>
 
+            <a
+              href="mailto:rajuxstudio@gmail.com"
+              className="flex items-center gap-3 text-sm hover:text-primary"
+            >
+              <Mail className="w-4 h-4" />
+              rajuxstudio@gmail.com
+            </a>
+          </div>
           <div className="space-y-8">
             {/* Profile */}
             <div className="flex items-center gap-4">
@@ -159,116 +176,112 @@ const ServiceRequestForm = ({ defaultService }: ServiceRequestFormProps) => {
                 </a>
               ))}
             </div>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <a
-                href="tel:+918005883696"
-                className="flex items-center gap-3 text-sm hover:text-primary"
-              >
-                <Phone className="w-4 h-4" />
-                +91 80058 83696
-              </a>
-
-              <a
-                href="mailto:rajuxstudio@gmail.com"
-                className="flex items-center gap-3 text-sm hover:text-primary"
-              >
-                <Mail className="w-4 h-4" />
-                rajuxstudio@gmail.com
-              </a>
-            </div>
           </div>
         </motion.div>
 
         {/* ================= RIGHT COLUMN (FORM) ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="p-8 rounded-3xl bg-card border border-border/50 shadow-bento"
-        >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Honeypot */}
-            <input type="text" name="_gotcha" className="hidden" />
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+  className="
+    w-full
+    lg:max-w-xl
+    lg:mx-auto
+    p-8
+    rounded-3xl
+    bg-card
+    border border-border/50
+    shadow-bento
+  "
+>
+  <form onSubmit={handleSubmit} className="space-y-6">
+    {/* Honeypot */}
+    <input type="text" name="_gotcha" className="hidden" />
 
-            <p className="text-muted-foreground">
-              Tell me a bit about your project — I’ll get back with clarity,
-              timelines, and next steps.
-            </p>
+    {/* Intro text */}
+    <p className="text-muted-foreground">
+      Tell me a bit about your project — I’ll get back with clarity,
+      timelines, and next steps.
+    </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label>Name</Label>
-                <Input
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="h-12 rounded-xl"
-                />
-              </div>
+    {/* Name + Email */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-2">
+        <Label>Name</Label>
+        <Input
+          value={formData.name}
+          onChange={(e) =>
+            setFormData({ ...formData, name: e.target.value })
+          }
+          className="h-12 rounded-xl"
+        />
+      </div>
 
-              <div className="space-y-2">
-                <Label>Email</Label>
-                <Input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="h-12 rounded-xl"
-                />
-              </div>
-            </div>
+      <div className="space-y-2">
+        <Label>Email</Label>
+        <Input
+          type="email"
+          value={formData.email}
+          onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value })
+          }
+          className="h-12 rounded-xl"
+        />
+      </div>
+    </div>
 
-            <div className="space-y-2">
-              <Label>Service Needed</Label>
-              <Input
-                value={formData.service}
-                onChange={(e) =>
-                  setFormData({ ...formData, service: e.target.value })
-                }
-                className="h-12 rounded-xl"
-              />
-            </div>
+    {/* Service */}
+    <div className="space-y-2">
+      <Label>Service Needed</Label>
+      <Input
+        value={formData.service}
+        onChange={(e) =>
+          setFormData({ ...formData, service: e.target.value })
+        }
+        className="h-12 rounded-xl"
+      />
+    </div>
 
-            <div className="space-y-2">
-              <Label>Project Details</Label>
-              <Textarea
-                value={formData.details}
-                onChange={(e) =>
-                  setFormData({ ...formData, details: e.target.value })
-                }
-                className="min-h-[150px] rounded-xl resize-none"
-              />
-            </div>
+    {/* Details */}
+    <div className="space-y-2">
+      <Label>Project Details</Label>
+      <Textarea
+        value={formData.details}
+        onChange={(e) =>
+          setFormData({ ...formData, details: e.target.value })
+        }
+        className="min-h-[150px] rounded-xl resize-none"
+      />
+    </div>
 
-            <Button
-              variant="hero"
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full h-14 rounded-xl text-lg font-semibold"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Request
-                </>
-              )}
-            </Button>
+    {/* Submit */}
+    <Button
+      variant="hero"
+      type="submit"
+      disabled={isSubmitting}
+      className="w-full h-14 rounded-xl text-lg font-semibold"
+    >
+      {isSubmitting ? (
+        <>
+          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+          Sending...
+        </>
+      ) : (
+        <>
+          <Send className="w-5 h-5 mr-2" />
+          Send Request
+        </>
+      )}
+    </Button>
 
-            {/* Helper text */}
-            <p className="text-center text-sm text-muted-foreground">
-              Or reach out directly
-            </p>
-          </form>
-        </motion.div>
+    {/* Helper text */}
+    <p className="text-center text-sm text-muted-foreground">
+      Or reach out directly
+    </p>
+  </form>
+</motion.div>
+
       </div>
 
       {/* ================= MOBILE BOTTOM BAR ================= */}

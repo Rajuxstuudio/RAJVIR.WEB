@@ -4,38 +4,31 @@ import desktopMockup2 from "@/assets/mockup-desktop-2.png";
 import Qilixlogo from "@/assets/QilixLogo.png";
 import QilixM from "@/assets/QilixMockup.png";
 import QilixT from "@/assets/QilixTemplete.png";
-import RecruitEase from "@/assets/RecruitEase.png";
+import RecruitEase from "@/database/Logo/RecruitEase.png";
+import lenss from "@/database/Logo/LENSS.png";
+import w2wd from "@/database/Logo/W2WD.png";
+import map from "@/database/illustration/BumperMandi.png";
+import banking from "@/database/illustration/Banking.png";
+import utility from "@/database/illustration/utilitygrid.png";
 
 export const templatesDB: TemplateDB[] = [
   {
     name: "Qilix Logo & Branding Kit",
-    image: [Qilixlogo, QilixM, QilixT],
+    image: [QilixM,Qilixlogo, QilixT],
     colors: ["#A7F3D0", "#6EE7B7"],
     tools: ["figma", "photoshop"],
   },
   {
     name: "LOGO Design",
-    image: [RecruitEase, desktopMockup2],
+    image: [RecruitEase, lenss, w2wd],
     colors: ["#BFDBFE", "#383f47ff"],
     tools: ["figma", "canva"],
   },
   {
-    name: "E-commerce Mobile UI",
-    image: [desktopMockup1, desktopMockup2],
+    name: "Illustration + landing page",
+    image: [map, banking, utility],
     colors: ["#FED7AA", "#FDBA74"],
     tools: ["figma", "illustrator"],
-  },
-  {
-    name: "Qilix",
-    image: [desktopMockup1, desktopMockup2],
-    colors: ["#DDD6FE", "#C4B5FD"],
-    tools: ["illustrator", "photoshop"],
-  },
-  {
-    name: "Startup Website",
-    image: [desktopMockup1, desktopMockup2],
-    colors: ["#BAE6FD", "#7DD3FC"],
-    tools: ["figma", "canva"],
   },
 
 ];

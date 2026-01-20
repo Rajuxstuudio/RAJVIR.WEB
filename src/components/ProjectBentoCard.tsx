@@ -1,6 +1,7 @@
-import { ExternalLink, Clock, Smartphone, Monitor } from "lucide-react";
+import { ExternalLink, Clock, Smartphone, Monitor, Link2Icon } from "lucide-react";
 import { getTechIcon } from "@/lib/techIcons";
 import { useState } from "react";
+import { color } from "framer-motion";
 
 
 interface ProjectData {
@@ -9,11 +10,15 @@ interface ProjectData {
   colors: string[];
   font: string;
   isLive: boolean;
+  playStoreUrl?: string;
+  websiteUrl?: string;
   description: string;
   stack: string[];
   duration: string;
   mobileMockup?: string;
   webMockup?: string;
+  businessDomain: string;
+  appModel: string;
 }
 
 interface ProjectBentoCardProps {
@@ -43,31 +48,51 @@ const ProjectBentoCard = ({ project, index }: ProjectBentoCardProps) => {
               {/* Logo & Name */}
               <div className="col-span-12 sm:col-span-6 p-5 rounded-2xl bg-gradient-to-br from-secondary/50 to-muted/30 border border-border/30">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden shadow-lg ring-2 ring-primary/10">
-                    <img src={project.logo} alt={project.name} className="w-full h-full object-cover" />
+
+                  {/* Logo */}
+                  <div className="w-16 h-16 rounded-xl border border-border p-2 bg-background flex items-center justify-center">
+                    <img
+                      src={project.logo}
+                      alt={project.name}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
+
+                  {/* Name & Business Model */}
                   <div>
-                    <h3 className="font-bold text-xl">{project.name}</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className={`w-2 h-2 rounded-full ${project.isLive ? "bg-success status-pulse" : "bg-muted-foreground"}`} />
-                      <span className="text-sm text-muted-foreground">
-                        {project.isLive ? "Live" : "In Development"}
-                      </span>
-                      {project.isLive && <ExternalLink className="w-3.5 h-3.5" />}
-                    </div>
+                    <h3 className="font-bold text-xl text-foreground">
+                      {project.name}
+                    </h3>
+
+                    <p className="text-sm text-muted-foreground mt-1">
+
+                      {project.businessDomain}{" "}
+                      <span className="mx-1 text-muted-foreground">|</span>{" "}
+                      {project.appModel}
+                    </p>
                   </div>
+
                 </div>
               </div>
 
               {/* Colors */}
               <div className="col-span-6 sm:col-span-3 p-5 rounded-2xl bg-gradient-to-br from-accent/5 to-primary/5 border border-border/30">
                 <p className="text-xs font-semibold mb-3">Colors</p>
-                <div className="flex gap-2">
+
+                <div className="flex overflow-hidden rounded-xl h-8">
                   {project.colors.map((c, i) => (
-                    <div key={i} className="w-8 h-8 rounded-xl" style={{ backgroundColor: c }} />
+                    <div
+                      key={i}
+                      className="h-full "
+                      style={{
+                        backgroundColor: c,
+                        width: `${100 / project.colors.length}%`,
+                      }}
+                    />
                   ))}
                 </div>
               </div>
+
 
               {/* Font & Duration */}
               <div className="col-span-6 sm:col-span-3 p-5 rounded-2xl bg-gradient-to-br from-success/5 to-primary/5 border border-border/30">
@@ -87,14 +112,30 @@ const ProjectBentoCard = ({ project, index }: ProjectBentoCardProps) => {
 
               {/* 🔁 DESKTOP MOCKUP → MOVED HERE */}
               <div className="col-span-12 px-5 pt-5 rounded-2xl bg-gradient-to-b from-primary/5 to-secondary/20 border border-border/30">
-                <p className="text-xs font-semibold mb-3 flex items-center gap-2">
-                  <Monitor className="w-4 h-4" />
-                  Desktop
-                </p>
-                <div className="h-[220px] overflow-hidden shadow-2xl cursor-pointer 
+                              {/* Header */}
+                <div className="flex items-center justify-between">
+
+              <p className="text-xs font-semibold mb-4 flex items-center gap-2 shrink-0">
+                <Monitor className="w-4 h-4" />
+                Desktop
+              </p>
+              {project.isLive && project.websiteUrl && (
+                <a
+                  href={project.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 group"
+                >
+                  Live
+                  <Link2Icon className="w-4 h-4 group-hover:-translate-x-1 transition-transform " />
+                </a>
+              )}
+              </div>
+                <div className=" overflow-hidden shadow-2xl cursor-pointer 
              border-t-4 border-l-4 border-r-4 border-foreground/15 
              rounded-tl-[16px] rounded-tr-[16px]">
-                  <img src={project.webMockup} alt="Desktop mockup" className="w-full h-full object-cover object-top"/>
+                  <img src={project.webMockup} alt="Desktop mockup" className="w-full h-full object-cover object-top" />
                 </div>
               </div>
 
@@ -121,19 +162,31 @@ const ProjectBentoCard = ({ project, index }: ProjectBentoCardProps) => {
             </div>
 
             {/* MOBILE MOCKUP */}
-            <div className="flex flex-col flex-1 col-span-12 px-5 pt-5 rounded-2xl 
-  bg-gradient-to-b from-primary/5 to-secondary/20 border border-border/30">
+            <div className="flex flex-col flex-1 col-span-12 px-5 pt-5 rounded-2xl bg-gradient-to-b from-primary/5 to-secondary/20 border border-border/30">
 
               {/* Header */}
+                <div className="flex items-center justify-between ">
+
               <p className="text-xs font-semibold mb-4 flex items-center gap-2 shrink-0">
                 <Smartphone className="w-4 h-4" />
                 Mobile
               </p>
+              {project.isLive && project.playStoreUrl && (
+                <a
+                  href={project.playStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 group"
+                >
+                  Live
+                  <Link2Icon className="w-4 h-4 group-hover:-translate-x-1 transition-transform " />
+                </a>
+              )}
+              </div>
 
               {/* Auto-layout image container */}
-              <div className="relative flex-1 overflow-hidden shadow-2xl cursor-pointer
-    border-t-4 border-l-4 border-r-4 border-foreground/15
-    rounded-tl-[16px] rounded-tr-[16px]">
+              <div className="relative overflow-hidden shadow-2xl cursor-pointer border-t-4 border-l-4 border-r-4 border-foreground/15 rounded-tl-[16px] rounded-tr-[16px] h-[640px] md:h-[640px] lg:flex-1        ">
 
                 <img
                   src={project.mobileMockup}

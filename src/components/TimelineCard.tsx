@@ -1,4 +1,4 @@
-import { LucideIcon, CheckCircle, MapPin } from "lucide-react";
+import { LucideIcon, CheckCircle, MapPin, Figma, Layers, PenTool, Monitor, Smartphone, Users, Lightbulb, Target, Palette, Layout, Code, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface TimelineCardProps {
@@ -12,6 +12,7 @@ interface TimelineCardProps {
   index: number;
   isLeft: boolean;
   city?: string;
+  skills?: string[];
 }
 
 // Simple map grid pattern component
@@ -84,6 +85,22 @@ const MapBackground = ({ city }: { city?: string }) => {
   );
 };
 
+// Map skill names to icons
+const skillIconMap: Record<string, LucideIcon> = {
+  "Figma": Figma,
+  "UI Design": Palette,
+  "UX Design": Users,
+  "Prototyping": Layers,
+  "Design Systems": Layout,
+  "User Research": Target,
+  "Wireframing": PenTool,
+  "Mobile Design": Smartphone,
+  "Web Design": Monitor,
+  "Innovation": Lightbulb,
+  "Development": Code,
+  "Creative": Sparkles,
+};
+
 const TimelineCard = ({
   year,
   title,
@@ -95,6 +112,7 @@ const TimelineCard = ({
   index,
   isLeft,
   city,
+  skills,
 }: TimelineCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -151,7 +169,42 @@ const TimelineCard = ({
           </div>
 
           {/* Card */}
-          <div className="group relative p-6 bg-card-gradient border border-border rounded-xl transition-all duration-500 hover:border-primary/30 hover:exhibit-glow museum-shadow overflow-hidden">
+          <div className="group relative p-6 bg-card-gradient border border-border rounded-xl transition-all duration-500 hover:border-primary/30 hover:exhibit-glow museum-shadow overflow-visible">
+            {/* Floating skill icons around card edges - desktop only */}
+            {skills && skills.length > 0 && (
+              <>
+                {skills.slice(0, 6).map((skill, i) => {
+                  const SkillIcon = skillIconMap[skill] || Sparkles;
+                  // Position icons around the card edges
+                  const positions = [
+                    { top: '15%', right: '-14px' },
+                    { top: '45%', right: '-14px' },
+                    { top: '75%', right: '-14px' },
+                    { top: '15%', left: '-14px' },
+                    { top: '45%', left: '-14px' },
+                    { top: '75%', left: '-14px' },
+                  ];
+                  const pos = positions[i];
+                  return (
+                    <div
+                      key={skill}
+                      className="hidden md:flex absolute z-20 items-center justify-center w-7 h-7 rounded-full 
+                        bg-background/95 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10
+                        opacity-0 scale-75 translate-x-0 group-hover:opacity-100 group-hover:scale-100
+                        transition-all duration-500 ease-out pointer-events-none"
+                      style={{
+                        ...pos,
+                        transitionDelay: `${i * 50}ms`,
+                      }}
+                      title={skill}
+                    >
+                      <SkillIcon size={12} className="text-primary/80" />
+                    </div>
+                  );
+                })}
+              </>
+            )}
+            
             {/* Map background */}
             <MapBackground city={city} />
             
@@ -201,6 +254,20 @@ const TimelineCard = ({
                         {achievement}
                       </span>
                     </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Mobile-only skill tags inside card */}
+              {skills && skills.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 pt-3 mt-3 border-t border-border/30 md:hidden">
+                  {skills.slice(0, 4).map((skill) => (
+                    <span
+                      key={skill}
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary/70 border border-primary/10"
+                    >
+                      {skill}
+                    </span>
                   ))}
                 </div>
               )}

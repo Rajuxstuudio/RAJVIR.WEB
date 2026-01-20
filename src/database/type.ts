@@ -9,12 +9,16 @@ export interface ProjectDB {
   colors: string[];
   font: string;
   isLive: boolean;
+  playStoreUrl?: string;
+  websiteUrl?: string;
   description: string;
   stack: string[];
   duration: string;
   mobileMockup?: any | null;
   webMockup?: any | null;
   category: ProjectCategory;
+  businessDomain: string;
+  appModel: string;      
 }
 
 export interface TemplateDB {
