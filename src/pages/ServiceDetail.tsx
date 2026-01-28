@@ -293,7 +293,19 @@ const ServiceDetail = () => {
                 </div>
 
                 {/* CTA Button */}
-                <Button variant="hero" size="lg" onClick={() => setIsFormOpen(true)}>
+                <Button variant="hero"
+                  size="lg"
+                  onClick={() => {
+                    setIsFormOpen(true);
+
+                    // wait for form to be rendered, then scroll
+                    setTimeout(() => {
+                      document
+                        .getElementById("request-form")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }}
+                >
                   Request This Service                <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </motion.div>

@@ -39,11 +39,11 @@ export const HeroSection = () => {
 
         {/* Subtitle */}
         <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4 lg:mb-6 font-display animate-fade-in-up animation-delay-200">
-          Product UX/UI Designer
+          Product Designer with 3+ years of experience designing SaaS and enterprise platforms that simplify complex workflows and improve productivity.
         </p>
 
         <p className="text-base lg:text-lg text-muted-foreground max-w-xl mx-auto mb-10 lg:mb-10 animate-fade-in-up animation-delay-300 leading-relaxed">
-          Crafting purposeful pixels, animations, and flows that tell compelling stories and drive engagement.
+          Web · Mobile · Tablet | End-to-end ownership
         </p>
 
         {/* CTA Buttons */}

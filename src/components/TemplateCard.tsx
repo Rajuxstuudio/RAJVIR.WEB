@@ -69,10 +69,10 @@ const TemplateCard = ({ template, index }: TemplateCardProps) => {
       >
         {/* IMAGE AREA */}
         <div className="p-4">
-          <div className="grid grid-cols-[1fr_auto] gap-3 aspect-[16/9]">
+          <div className="grid grid-cols-[1fr_auto] gap-3 aspect-[16/10]">
             {/* HERO IMAGE */}
             <div
-              className="relative rounded-xl overflow-hidden cursor-pointer"
+              className=" relative rounded-xl overflow-hidden cursor-pointer"
               onClick={() => openViewer(hoverIndex ?? 0)}
             >
               <img
